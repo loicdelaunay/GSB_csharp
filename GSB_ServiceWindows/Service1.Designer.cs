@@ -35,6 +35,7 @@
             // 
             this.timerGSB.Enabled = true;
             this.timerGSB.Interval = 86400000;
+            this.timerGSB.Tick += new System.EventHandler(this.timerGSB_Tick);
             // 
             // Service1
             // 
