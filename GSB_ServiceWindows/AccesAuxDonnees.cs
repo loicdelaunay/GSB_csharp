@@ -226,5 +226,39 @@ namespace GSB_ServiceWindows
                 throw new Exception("L'élément à supprimer n'est pas présent en base de données.\n" + ex.Message);
             }
         }
+
+        /// <summary>
+        /// Met à jour toutes les fiches d'un mois précis sur l'état cloturé
+        /// </summary>
+        /// <param name="date">année + mois ex:201609</param>
+        public static void FicheClotureAutomatique(string date)
+        {
+            try
+            {
+                RequeteAExecuter("UPDATE fichefrais SET idetat = \"CL\" where mois = " + date);
+            }
+            catch (Exception ex)
+            {
+                FermerConnexion();
+                throw new Exception("Impossible de mettre à jour les fiches frais sur l'état cloturé.\n" + ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Met à jour toutes les fiches d'un mois précis sur l'état remboursé
+        /// </summary>
+        /// <param name="date">année + mois ex:201609</param>
+        public static void FicheRelboursementAutomatique(string date)
+        {
+            try
+            {
+                RequeteAExecuter("UPDATE fichefrais SET idetat = \"RB\" where mois = " + date);
+            }
+            catch (Exception ex)
+            {
+                FermerConnexion();
+                throw new Exception("Impossible de mettre à jour les fiches frais sur l'état remboursé.\n" + ex.Message);
+            }
+        }
     }
 }
